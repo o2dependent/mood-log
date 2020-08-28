@@ -10,7 +10,7 @@ class MoodForm extends Component {
 		super(props);
 		this.state = {
 			activeMood: Number,
-			moodInput: String,
+			moodInput: '',
 		};
 		this.emojiMoodArr = ['sad-tear', 'frown', 'meh', 'smile', 'grin'];
 	}
@@ -23,16 +23,13 @@ class MoodForm extends Component {
 		const newMoodObj = {
 			mood: this.emojiMoodArr[this.state.activeMood],
 			moodNum: this.state.activeMood,
-			month: moment().format('MMMM'),
-			day: moment().format('dddd'),
-			hour: moment().format('h'),
-			year: moment().format('YYYY'),
+			moment: moment(),
 			other: this.state.moodInput,
 		};
 
 		this.props.addNewMood(newMoodObj);
 
-		this.setState({ activeMood: Number, moodInput: String });
+		this.setState({ activeMood: Number, moodInput: '' });
 	};
 
 	handleInputChange = (e) => {

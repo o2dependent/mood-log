@@ -40,8 +40,11 @@ const style = {
 			fontSize: '2.5vw',
 			fontWeight: '300',
 		},
-		'@media (max-width: 350px)': {
+		'@media (max-width: 800px)': {
 			width: '90%',
+			'& h1': {
+				fontSize: '5vw',
+			},
 		},
 	},
 	emojiContainer: {
@@ -77,6 +80,9 @@ const style = {
 		height: '20%',
 		borderRadius: '10px',
 		textTransform: 'none',
+		'@media (max-width: 800px)': {
+			fontSize: '6vw',
+		},
 	},
 	emoji: {
 		transition: 'all 500ms',

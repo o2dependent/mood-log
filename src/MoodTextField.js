@@ -40,6 +40,14 @@ const MoodTextField = withStyles({
 		'& .MuiInput-underline:hover:before': {
 			borderColor: colors.white50,
 		},
+		'@media (max-width: 800px)': {
+			'& .MuiInputBase-input': {
+				fontSize: '5vw',
+			},
+			'& label': {
+				fontSize: '5vw',
+			},
+		},
 	},
 })(TextField);
 
