@@ -7,6 +7,11 @@ const colors = {
 	tan: '#B69791',
 	white: '#FAFAFA',
 	white50: '#FAFAFA55',
+	dateMood0: '#972C2C',
+	dateMood1: '#D05E5E',
+	dateMood2: '#FCFF75',
+	dateMood3: '#7EC17E',
+	dateMood4: '#1F4F54',
 };
 
 export default colors;

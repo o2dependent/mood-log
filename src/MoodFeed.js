@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import MoodForm from './MoodForm';
 import { withStyles } from '@material-ui/styles';
 import colors from './colors';
 import { Button } from '@material-ui/core';
@@ -9,7 +8,6 @@ const styles = {
 	MoodFeed: {
 		display: 'flex',
 		flexDirection: 'column',
-		justifyContent: 'center',
 		alignItems: 'center',
 		minHeight: '100vh',
 		height: 'fit-content',
@@ -22,20 +20,19 @@ const styles = {
 	},
 	feedCard: {
 		'&.moodFormCard': {
-			background:
-				'linear-gradient(180deg, #3D3166 50.16%, #3D3166 69.71%, #8487BA 310.99%)',
+			background: 'linear-gradient(180deg, #3D3166 46.09%, #722977 350%)',
 		},
 		'&.moodLogsCard': {
 			background:
-				'linear-gradient(180deg, #3D3166 46.09%, #722977 299.58%)',
+				'linear-gradient(180deg, #3D3166 50.16%, #3D3166 69.71%, #8487BA 350%)',
 		},
 		display: 'grid',
+		boxSizing: 'border-box',
 		justifyContent: 'center',
-		alignItems: 'center',
 		position: 'relative',
 		height: 'fit-content',
 		width: '50%',
-		margin: '5vh auto',
+		margin: '3vh auto',
 		padding: '0 0.5em',
 		paddingTop: '2rem',
 		paddingBottom: '2%',
@@ -56,7 +53,7 @@ const styles = {
 			marginBottom: '5vh',
 		},
 		'@media (max-width: 800px)': {
-			width: '90%',
+			width: '98%',
 			'& h2': {
 				fontSize: '6vw',
 			},
@@ -68,7 +65,7 @@ const styles = {
 	cardButton: {
 		'&.MuiButton-root:hover': {
 			transition: 'all 400ms',
-			background: colors.lightPurp,
+			background: colors.pink,
 			transform: 'translate(50%, 45%)',
 			boxShadow: '0px 7px 7px rgba(0, 0, 0, 0.45)',
 		},
@@ -76,15 +73,15 @@ const styles = {
 			fontFamily: 'Raleway, sans-serif',
 		},
 		'&.moodLogsButton': {
-			background: colors.pink,
+			background: colors.lightPurp,
 			'&.MuiButton-root:hover': {
-				background: colors.pink,
+				background: colors.lightPurp,
 			},
 		},
 		transition: 'all 200ms',
 		boxShadow: '0px 5px 5px rgba(0, 0, 0, 0.25)',
 		color: colors.white,
-		background: colors.lightPurp,
+		background: colors.pink,
 		fontSize: '2.5vw',
 		fontWeight: '400',
 		outline: 'none',
@@ -106,73 +103,44 @@ const styles = {
 class MoodFeed extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			moodsArr: JSON.parse(window.localStorage.getItem('moods') || '[]'),
-			showMoodForm: false,
-		};
+		this.state = {};
 	}
 
 	addNewMood = async (newMoodObj) => {
-		await this.setState((st) => ({
-			moodsArr: [...st.moodsArr, newMoodObj],
-			showMoodForm: false,
-		}));
-
-		const moods = this.state.moodsArr;
-
-		window.localStorage.setItem('moods', JSON.stringify(moods));
+		this.props.addNewMood(newMoodObj);
 	};
 
 	showMoodForm = () => {
-		this.setState({ showMoodForm: true });
+		this.props.showMoodForm();
 	};
 
 	removeMoodForm = () => {
-		this.setState({ showMoodForm: false });
+		this.props.removeMoodForm();
 	};
 
-	removeMood = async (idx) => {
-		await this.setState((st) => ({
-			moodsArr: [
-				...st.moodsArr.slice(0, idx),
-				...st.moodsArr.slice(idx + 1, st.moodsArr.length),
-			],
-		}));
-
-		window.localStorage.setItem(
-			'moods',
-			JSON.stringify(this.state.moodsArr)
-		);
+	removeMood = (idx) => {
+		this.props.removeMood(idx);
 	};
 
 	render() {
-		const { classes } = this.props;
+		const { classes, moodsArr, showMoodForm, removeMood } = this.props;
 		return (
 			<div className={classes.MoodFeed}>
 				{
-					/* Mood Modal */
-					this.state.showMoodForm && (
-						<MoodForm
-							addNewMood={this.addNewMood}
-							removeMoodForm={this.removeMoodForm}
-						/>
-					)
-				}
-				{
 					/* Moods Display */
-					this.state.moodsArr.map((mood, idx) => (
-						<div className={classes.dateCard} key={`${mood}${idx}`}>
-							<img
-								className={classes.emoji}
-								src={`./emojis/${mood.mood}.svg`}
-								alt={mood.mood}
-							/>
-							<p>{mood.other}</p>
-							<button onClick={() => this.removeMood(idx)}>
-								Delete
-							</button>
-						</div>
-					))
+					// moodsArr.map((mood, idx) => (
+					// 	<div className={classes.dateCard} key={`${mood}${idx}`}>
+					// 		<img
+					// 			className={classes.emoji}
+					// 			src={`./emojis/${mood.mood}.svg`}
+					// 			alt={mood.mood}
+					// 		/>
+					// 		<p>{mood.other}</p>
+					// 		<button onClick={() => removeMood(idx)}>
+					// 			Delete
+					// 		</button>
+					// 	</div>
+					// ))
 				}
 				<div className={`${classes.feedCard} moodFormCard`}>
 					<h4>Welcome Back</h4>
@@ -182,7 +150,7 @@ class MoodFeed extends Component {
 					</h2>
 					<Button
 						className={`${classes.cardButton} moodFormButton`}
-						onClick={this.showMoodForm}
+						onClick={showMoodForm}
 					>
 						Log a Mood
 					</Button>
@@ -193,7 +161,6 @@ class MoodFeed extends Component {
 					<Link to='/calendar'>
 						<Button
 							className={`${classes.cardButton} moodLogsButton`}
-							onClick={this.showMoodForm}
 						>
 							Check Moods
 						</Button>

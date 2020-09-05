@@ -20,10 +20,12 @@ class MoodForm extends Component {
 	};
 
 	handleSubmit = () => {
+		const newMoment = moment();
 		const newMoodObj = {
+			slug: `${newMoment.format('MM DD YYYY')}`,
 			mood: this.emojiMoodArr[this.state.activeMood],
 			moodNum: this.state.activeMood,
-			moment: moment(),
+			moment: newMoment,
 			other: this.state.moodInput,
 		};
 
