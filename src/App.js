@@ -64,24 +64,19 @@ class App extends Component {
 				<Switch>
 					<Route exact path='/'>
 						<MoodFeed
-							moodsArr={moodsArr}
 							addNewMood={this.addNewMood}
 							showMoodForm={this.showMoodForm}
-							removeMoodForm={this.removeMoodForm}
 						/>
 					</Route>
 					<Route exact path='/calendar'>
 						<CalendarContainer moodsArr={moodsArr} />
 					</Route>
-					<Route
-						path='/calendar/day/:date'
-						children={
-							<ShowDay
-								moodsArr={moodsArr}
-								removeMood={this.removeMood}
-							/>
-						}
-					/>
+					<Route path='/calendar/day/:date'>
+						<ShowDay
+							moodsArr={moodsArr}
+							removeMood={this.removeMood}
+						/>
+					</Route>
 				</Switch>
 			</div>
 		);

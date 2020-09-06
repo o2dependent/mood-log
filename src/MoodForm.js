@@ -4,6 +4,7 @@ import { Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/styles';
 import MoodTextField from './MoodTextField';
 import style from './MoodFormStyle';
+import emojiMoodArr from './emojiMoodArr';
 
 class MoodForm extends Component {
 	constructor(props) {
@@ -12,7 +13,6 @@ class MoodForm extends Component {
 			activeMood: Number,
 			moodInput: '',
 		};
-		this.emojiMoodArr = ['sad-tear', 'frown', 'meh', 'smile', 'grin'];
 	}
 
 	setMood = (newMood) => {
@@ -50,7 +50,7 @@ class MoodForm extends Component {
 				>
 					<h1>How are you feeling right now?</h1>
 					<div className={classes.emojiContainer}>
-						{this.emojiMoodArr.map((emoji, idx) => (
+						{emojiMoodArr.map((emoji, idx) => (
 							<div
 								key={`mood ${emoji}`}
 								onClick={() => this.setMood(idx)}

@@ -123,25 +123,9 @@ class MoodFeed extends Component {
 	};
 
 	render() {
-		const { classes, moodsArr, showMoodForm, removeMood } = this.props;
+		const { classes, showMoodForm } = this.props;
 		return (
 			<div className={classes.MoodFeed}>
-				{
-					/* Moods Display */
-					// moodsArr.map((mood, idx) => (
-					// 	<div className={classes.dateCard} key={`${mood}${idx}`}>
-					// 		<img
-					// 			className={classes.emoji}
-					// 			src={`./emojis/${mood.mood}.svg`}
-					// 			alt={mood.mood}
-					// 		/>
-					// 		<p>{mood.other}</p>
-					// 		<button onClick={() => removeMood(idx)}>
-					// 			Delete
-					// 		</button>
-					// 	</div>
-					// ))
-				}
 				<div className={`${classes.feedCard} moodFormCard`}>
 					<h4>Welcome Back</h4>
 					<h2>
