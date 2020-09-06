@@ -23,7 +23,7 @@ class MoodForm extends Component {
 		const newMoment = moment();
 		const newMoodObj = {
 			slug: `${newMoment.format('MM DD YYYY')}`,
-			mood: this.emojiMoodArr[this.state.activeMood],
+			mood: emojiMoodArr[this.state.activeMood],
 			moodNum: this.state.activeMood,
 			moment: newMoment,
 			other: this.state.moodInput,
