@@ -18,19 +18,19 @@
 			"sizes": "512x512"
 		},
 		{
-			"src": "frown.svg"
+			"src": "emojis/frown.svg"
 		},
 		{
-			"src": "grin.svg"
+			"src": "emojis/grin.svg"
 		},
 		{
-			"src": "meh.svg"
+			"src": "emojis/meh.svg"
 		},
 		{
-			"src": "sad-tear.svg"
+			"src": "emojis/sad-tear.svg"
 		},
 		{
-			"src": "smile.svg"
+			"src": "emojis/smile.svg"
 		}
 	],
 	"start_url": ".",
