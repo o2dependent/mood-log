@@ -10,8 +10,9 @@ class MoodForm extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			activeMood: Number,
+			activeMood: null,
 			moodInput: '',
+			flashError: false,
 		};
 	}
 
@@ -20,25 +21,31 @@ class MoodForm extends Component {
 	};
 
 	handleSubmit = () => {
-		const newMoment = moment();
-		const newMoodObj = {
-			slug: `${newMoment.format('MM DD YYYY')}`,
-			moodNum: this.state.activeMood,
-			moment: newMoment,
-			other: this.state.moodInput,
-		};
+		if (this.state.activeMood) {
+			const newMoment = moment();
+			const newMoodObj = {
+				slug: `${newMoment.format('MM DD YYYY')}`,
+				moodNum: this.state.activeMood,
+				moment: newMoment,
+				other: this.state.moodInput,
+			};
 
-		this.props.addNewMood(newMoodObj);
+			this.props.addNewMood(newMoodObj);
 
-		this.setState({ activeMood: Number, moodInput: '' });
+			this.setState({ activeMood: null, moodInput: '' });
+		} else {
+			this.setState({ flashError: true });
+			setTimeout(() => this.setState({ flashError: false }), 1000);
+		}
 	};
 
 	handleInputChange = (e) => {
-		this.setState({ moodInput: e.target.value });
+		this.setState({ moodInput: e.target.value, flashError: false });
 	};
 
 	render() {
 		const { classes, removeMoodForm } = this.props;
+		const { flashError } = this.state;
 		return (
 			<div className={classes.modalContainer}>
 				<div className={classes.modalBG} onClick={removeMoodForm} />
@@ -48,7 +55,11 @@ class MoodForm extends Component {
 					}`}
 				>
 					<h1>How are you feeling right now?</h1>
-					<div className={classes.emojiContainer}>
+					<div
+						className={`${classes.emojiContainer} ${
+							flashError ? classes.flashError : ''
+						}`}
+					>
 						{emojiMoodArr.map((emoji, idx) => (
 							<div
 								key={`mood ${emoji}`}

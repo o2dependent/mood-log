@@ -12,6 +12,7 @@ const colors = {
 	dateMood2: '#FCFF75',
 	dateMood3: '#7EC17E',
 	dateMood4: '#1F4F54',
+	danger: '#9d6c95',
 };
 
 export default colors;

@@ -49,6 +49,7 @@ const style = {
 	},
 	emojiContainer: {
 		boxSizing: 'border-box',
+		transition: 'background 300ms',
 		boxShadow: '0px 5px 7px rgba(0, 0, 0, 0.25)',
 		padding: '1em',
 		margin: '0 auto',
@@ -58,6 +59,23 @@ const style = {
 		gridColumnGap: '5px',
 		background: colors.lightPurp,
 		borderRadius: '5px',
+	},
+	flashError: {
+		animation: '$flashErrorAnimation 1000ms linear',
+	},
+	'@keyframes flashErrorAnimation': {
+		'0%': {
+			background: colors.lightPurp,
+		},
+		'25%': {
+			background: colors.danger,
+		},
+		'75%': {
+			background: colors.danger,
+		},
+		'100%': {
+			background: colors.lightPurp,
+		},
 	},
 	submitBtn: {
 		'&.MuiButton-root:hover': {
