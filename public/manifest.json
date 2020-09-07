@@ -18,19 +18,24 @@
 			"sizes": "512x512"
 		},
 		{
-			"src": "emojis/frown.svg"
+			"src": "emojis/frown.svg",
+			"sizes": "496x512"
 		},
 		{
-			"src": "emojis/grin.svg"
+			"src": "emojis/grin.svg",
+			"sizes": "496x512"
 		},
 		{
-			"src": "emojis/meh.svg"
+			"src": "emojis/meh.svg",
+			"sizes": "496x512"
 		},
 		{
-			"src": "emojis/sad-tear.svg"
+			"src": "emojis/sad-tear.svg",
+			"sizes": "496x512"
 		},
 		{
-			"src": "emojis/smile.svg"
+			"src": "emojis/smile.svg",
+			"sizes": "496x512"
 		}
 	],
 	"start_url": ".",
