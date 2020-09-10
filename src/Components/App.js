@@ -6,19 +6,7 @@ import CalendarContainer from './CalendarContainer';
 import MoodForm from './MoodForm';
 import ShowDay from './ShowDay';
 import TitleCard from './TitleCard';
-
-const style = {
-	app: {
-		minHeight: '100vh',
-		height: '100vh',
-		display: 'flex',
-		flexDirection: 'column',
-	},
-	page: {
-		height: 'auto',
-		flexGrow: 1,
-	},
-};
+import style from '../Styles/AppStyles';
 
 class App extends Component {
 	constructor(props) {

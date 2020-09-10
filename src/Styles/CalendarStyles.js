@@ -19,7 +19,7 @@ const useStyles = makeStyles({
 				) + 1
 			}, 1.5fr)`,
 		gridTemplateColumns: 'repeat(7, 1fr)',
-		height: '100%',
+		height: '90vh',
 		width: '100%',
 	},
 });

@@ -90,7 +90,6 @@ function ShowDay(props) {
 						</div>
 					))
 				) : (
-					// TODO change styling on fallback text
 					<p>No moods to show</p>
 				)}
 				<Button

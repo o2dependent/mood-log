@@ -8,7 +8,7 @@ const useStyles = makeStyles({
 		boxSizing: 'border-box',
 		height: '100%',
 		width: '100%',
-		background: colors.bgAccent,
+		background: colors.bgPurp,
 		color: colors.white,
 		margin: 0,
 		padding: '4vh 2.5%',
@@ -27,6 +27,9 @@ const useStyles = makeStyles({
 			`fit-content(1fr) repeat(${dayArr.length}, 1fr)`,
 		'& h4': {
 			paddingBottom: '10px',
+		},
+		'& p': {
+			fontSize: '4vw',
 		},
 	},
 	dayItem: {
@@ -54,9 +57,7 @@ const useStyles = makeStyles({
 		display: 'flex',
 		justifyContent: 'center',
 		alignItems: 'center',
-		'& p': {
-			fontSize: '4vw',
-		},
+
 		'&.noNote p': {
 			opacity: '50%',
 		},
