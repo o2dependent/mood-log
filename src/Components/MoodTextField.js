@@ -1,6 +1,6 @@
 import { withStyles } from '@material-ui/styles';
 import { TextField } from '@material-ui/core';
-import colors from './colors';
+import colors from '../Styles/colors';
 
 const MoodTextField = withStyles({
 	root: {
@@ -9,7 +9,6 @@ const MoodTextField = withStyles({
 		marginTop: '2%',
 		margin: '0 auto',
 		'&input:-internal-autofill-selected,input:-webkit-autofill,input:-webkit-autofill:hover, input:-webkit-autofill:focus,textarea:-webkit-autofill,textarea:-webkit-autofill:hover,textarea:-webkit-autofill:focus': {
-			fontFamily: 'Raleway, sans-serif',
 			border: 'none',
 			backgroundColor: 'transparent',
 			WebkitTextFillColor: colors.white,
@@ -17,7 +16,6 @@ const MoodTextField = withStyles({
 			transition: 'background-color 5000s ease-in-out 0s',
 		},
 		'& label': {
-			fontFamily: 'Raleway, sans-serif',
 			fontSize: '2vw',
 			fontWeight: '300',
 			color: colors.white,
@@ -26,7 +24,6 @@ const MoodTextField = withStyles({
 			color: colors.white,
 		},
 		'& .MuiInputBase-input': {
-			fontFamily: 'Raleway, sans-serif',
 			color: colors.white,
 			fontSize: '2vw',
 			fontWeight: '300',

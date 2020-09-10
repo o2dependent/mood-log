@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Link } from 'react-router-dom';
-import colors from './colors';
+import colors from '../Styles/colors';
 import moment from 'moment';
 
 const useStyles = makeStyles({
@@ -31,6 +31,7 @@ const useStyles = makeStyles({
 			borderRadius: '0 0 5px 0',
 			background: colors.bgAccent,
 			position: 'absolute',
+			textAlign: 'center',
 			top: 0,
 			left: 0,
 			fontSize: '2vh',
@@ -89,24 +90,22 @@ const useStyles = makeStyles({
 });
 
 export default function MoodDay(props) {
-	const { day } = props;
+	const { day, curMonth, curYear } = props;
 	const classes = useStyles(props);
 
 	return (
 		<div className={classes.moodDay}>
 			<p>{day.day}</p>
-			{day.event.length > 0 && (
-				<div className={classes.seeMoreContainer}>
-					<Link
-						className={classes.seeMore}
-						to={`/calendar/day/${moment(day.event[0].moment).format(
-							'MM DD YYYY'
-						)}`}
-					>
-						More
-					</Link>
-				</div>
-			)}
+			<div className={classes.seeMoreContainer}>
+				<Link
+					className={classes.seeMore}
+					to={`/calendar/day/${moment(
+						`${curMonth} ${day.day} ${curYear}`
+					).format('MM DD YYYY')}`}
+				>
+					More
+				</Link>
+			</div>
 		</div>
 	);
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/styles';
-import colors from './colors';
+import colors from '../Styles/colors';
 
 const useStyles = makeStyles({
 	moodDayEvent: {

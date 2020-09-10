@@ -12,7 +12,12 @@ const colors = {
 	dateMood2: '#FCFF75',
 	dateMood3: '#7EC17E',
 	dateMood4: '#1F4F54',
-	danger: '#9d6c95',
+	danger: '#C11531',
+	card: {
+		bgCard: '#6A62A4',
+		itemPrimary: '#8487BA',
+		itemSecondary: '#726DAB',
+	},
 };
 
 export default colors;

@@ -2,7 +2,7 @@ import React from 'react';
 import MoodDayEvent from './MoodDayEvent';
 import { makeStyles } from '@material-ui/styles';
 import { Link } from 'react-router-dom';
-import colors from './colors';
+import colors from '../Styles/colors';
 import moment from 'moment';
 
 const useStyles = makeStyles({

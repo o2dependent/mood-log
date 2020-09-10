@@ -3,14 +3,16 @@ import moment from 'moment';
 import { Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/styles';
 import MoodTextField from './MoodTextField';
-import style from './MoodFormStyle';
-import emojiMoodArr from './emojiMoodArr';
+import style from '../Styles/MoodFormStyle';
+import emojiMoodArr from '../Helpers/emojiMoodArr';
 
 class MoodForm extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			activeMood: null,
+			activeMood: NaN,
+			date: this.props.date,
+			time: '17:35',
 			moodInput: '',
 			flashError: false,
 		};
@@ -21,16 +23,19 @@ class MoodForm extends Component {
 	};
 
 	handleSubmit = () => {
-		if (this.state.activeMood) {
-			const newMoment = moment();
+		if (!isNaN(this.state.activeMood)) {
+			const { date, time, moodInput, activeMood } = this.state;
+			const newMoment = moment(`${date} ${time}`, 'MM DD YYYY HH:mm');
+			console.log(newMoment);
+			console.log(moment());
 			const newMoodObj = {
 				slug: `${newMoment.format('MM DD YYYY')}`,
-				moodNum: this.state.activeMood,
+				moodNum: activeMood,
 				moment: newMoment,
-				other: this.state.moodInput,
+				other: moodInput,
 			};
 
-			this.props.addNewMood(newMoodObj);
+			this.props.addDayMood(newMoodObj);
 
 			this.setState({ activeMood: null, moodInput: '' });
 		} else {
@@ -40,21 +45,21 @@ class MoodForm extends Component {
 	};
 
 	handleInputChange = (e) => {
-		this.setState({ moodInput: e.target.value, flashError: false });
+		this.setState({ [e.target.name]: e.target.value, flashError: false });
 	};
 
 	render() {
-		const { classes, removeMoodForm } = this.props;
+		const { classes, removeDayForm } = this.props;
 		const { flashError } = this.state;
 		return (
 			<div className={classes.modalContainer}>
-				<div className={classes.modalBG} onClick={removeMoodForm} />
+				<div className={classes.modalBG} onClick={removeDayForm} />
 				<div
 					className={`${classes.moodForm} ${
 						this.state.showOpacity ? classes.show : classes.hide
 					}`}
 				>
-					<h1>How are you feeling right now?</h1>
+					<h1>What would you like to add?</h1>
 					<div
 						className={`${classes.emojiContainer} ${
 							flashError ? classes.flashError : ''
@@ -70,13 +75,22 @@ class MoodForm extends Component {
 										this.state.activeMood === idx &&
 										classes.active
 									}`}
-									src={`./emojis/${emoji}.svg`}
+									src={`/emojis/${emoji}.svg`}
 									alt={emoji}
 								/>
 							</div>
 						))}
 					</div>
 					<MoodTextField
+						name='time'
+						label='Time'
+						type='time'
+						defaultValue='07:30'
+						value={this.state.time}
+						onChange={this.handleInputChange}
+					/>
+					<MoodTextField
+						name='moodInput'
 						label='Other thoughts'
 						value={this.state.moodInput}
 						onChange={this.handleInputChange}

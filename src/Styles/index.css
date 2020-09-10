@@ -1,6 +1,10 @@
+* {
+	font-family: 'Roboto', sans-serif;
+	text-align: center;
+	margin: 0;
+}
 body {
 	margin: 0;
-	font-family: 'Roboto', sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
@@ -8,4 +12,18 @@ body {
 code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
 		monospace;
+}
+
+p {
+	font-size: 2vw;
+	font-weight: 300;
+}
+
+h1 {
+	font-size: 5vw;
+}
+
+h4 {
+	font-size: 4vw;
+	font-weight: 400;
 }

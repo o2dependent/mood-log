@@ -1,6 +1,7 @@
 import colors from './colors';
 
-/* ------------------------ Style object for MoodForm ----------------------- */
+// TODO clean up unused styles
+
 const style = {
 	modalContainer: {
 		zIndex: '1000',
@@ -20,7 +21,6 @@ const style = {
 		backgroundColor: '#00000065',
 	},
 	moodForm: {
-		fontFamily: 'Raleway, sans-serif',
 		display: 'grid',
 		justifyContent: 'center',
 		alignItems: 'center',
@@ -82,7 +82,6 @@ const style = {
 			transitionDuration: '400ms',
 			backgroundColor: colors.medPurp,
 		},
-		fontFamily: 'Raleway, sans-serif',
 		boxShadow: '0px 5px 5px rgba(0, 0, 0, 0.25)',
 		color: colors.white,
 		background: colors.pink,
