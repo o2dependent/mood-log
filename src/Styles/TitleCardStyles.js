@@ -21,7 +21,7 @@ const useStyles = makeStyles({
 		padding: '2vh 0',
 		color: colors.white,
 		background: colors.bgAccent,
-		transition: 'min-height 500ms',
+		transition: 'min-height 500ms cubic-bezier(0.46, 0.03, 0.8, 0.96)',
 	},
 	titleContainer: {
 		display: 'flex',
@@ -46,7 +46,7 @@ const useStyles = makeStyles({
 			'inset 0px 2px 6px rgba(0, 0, 0, 0.25), 0px 1px 2px rgba(0, 0, 0, 0.1)',
 		padding: '1% 5%',
 		borderRadius: '5px',
-		background: colors.lightPurp,
+		background: colors.light,
 		fontWeight: 400,
 		transition: 'all 300ms',
 		'& span': {
@@ -75,7 +75,7 @@ const useStyles = makeStyles({
 			boxShadow:
 				'inset 2px 2px 4px rgba(0, 0, 0, 0.25),inset 0px 10px 24px rgba(0, 0, 0, 0.25)',
 			textShadow: '0px 0px 2px rgba(0,0,0,0.25)',
-			background: `${colors.lightPurp}AA`,
+			background: `${colors.light}AA`,
 		},
 	},
 	navBottom: {

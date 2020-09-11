@@ -1,10 +1,11 @@
+// TODO remove the white50 from all files and replace with interpolation
 const colors = {
-	bgPurp: '#4F3D8D',
+	bg: '#4F3D8D',
 	bgAccent: '#3D3166',
-	medPurp: '#722977',
-	lightPurp: '#8487BA',
+	med: '#722977',
+	light: '#8487BA',
 	pink: '#984AA9',
-	tan: '#B69791',
+	overlay: '#B69791',
 	white: '#FAFAFA',
 	white50: '#FAFAFA55',
 	dateMood0: '#972C2C',

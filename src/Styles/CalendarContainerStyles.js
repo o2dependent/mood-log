@@ -5,7 +5,7 @@ import colors from './colors';
 const style = {
 	moodCalendarContainer: {
 		fontWeight: 300,
-		background: colors.bgPurp,
+		background: colors.bg,
 		height: '100%',
 		'& h1': {
 			margin: '0 auto',
@@ -25,7 +25,7 @@ const style = {
 			color: colors.white,
 		},
 		'& .MuiSwitch-track': {
-			backgroundColor: colors.lightPurp,
+			backgroundColor: colors.light,
 		},
 		'& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
 			opacity: 0.99,

@@ -6,7 +6,7 @@ const style = {
 		minHeight: '100vh',
 		display: 'flex',
 		flexDirection: 'column',
-		background: colors.bgPurp,
+		background: colors.bg,
 	},
 	page: {
 		marginTop: '10vh',

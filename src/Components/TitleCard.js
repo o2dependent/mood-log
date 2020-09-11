@@ -52,7 +52,7 @@ export default function TitleCard(props) {
 					<Button>Calendar</Button>
 				</Link>
 				<Link to='/calendar' onClick={toggleDrawer(false)}>
-					<Button>Calendar</Button>
+					<Button>Analysis</Button>
 				</Link>
 				<div className={classes.navBottom}>
 					<Button>Profile</Button>

@@ -7,6 +7,7 @@ import MoodForm from './MoodForm';
 import ShowDay from './ShowDay';
 import TitleCard from './TitleCard';
 import style from '../Styles/AppStyles';
+import FilterModal from './FilterModal';
 
 class App extends Component {
 	constructor(props) {
@@ -14,12 +15,11 @@ class App extends Component {
 		this.state = {
 			moodsArr: JSON.parse(window.localStorage.getItem('moods') || '[]'),
 			showMoodForm: false,
+			showFilterModal: false,
 			curMonth: moment().format('MMMM'),
 			curYear: moment().format('YYYY'),
 			startTime: 0,
 			endTime: 23,
-			calendarFilters: new Set(['fullCalendar']),
-			titleCollapsed: false,
 		};
 		this.weekdayShort = moment.weekdaysShort();
 	}
@@ -73,21 +73,49 @@ class App extends Component {
 		return formatted;
 	};
 
+	// Toggle filter modal
+	toggleFilterModal = (open) => (e) => {
+		if (
+			e &&
+			e.type === 'keydown' &&
+			(e.key === 'Tab' || e.key === 'Shift')
+		) {
+			return;
+		}
+
+		this.setState({ showFilterModal: open });
+	};
+
 	render() {
 		const { classes } = this.props;
-		const { moodsArr, curYear, curMonth, startTime, endTime } = this.state;
+		const {
+			moodsArr,
+			curYear,
+			curMonth,
+			startTime,
+			endTime,
+			showMoodForm,
+			showFilterModal,
+		} = this.state;
 		const curMonthFormatted = this.formatMonth();
 		return (
 			<div className={classes.app}>
 				{
 					/* Mood Modal */
-					this.state.showMoodForm && (
+					showMoodForm && (
 						<MoodForm
 							addNewMood={this.addNewMood}
 							removeMoodForm={this.removeMoodForm}
 						/>
 					)
 				}
+				{/* TODO implement filters */}
+				{
+					/* Filter modal */ showFilterModal && (
+						<FilterModal close={this.toggleFilterModal(false)} />
+					)
+				}
+
 				<TitleCard
 					curMonthFormatted={curMonthFormatted}
 					curYear={curYear}
@@ -105,6 +133,7 @@ class App extends Component {
 								curYear={curYear}
 								curMonth={curMonth}
 								moodsArr={moodsArr}
+								openFilterModal={this.toggleFilterModal(true)}
 							/>
 						</Route>
 						<Route path='/calendar/day/:date'>

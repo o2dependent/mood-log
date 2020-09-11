@@ -7,7 +7,15 @@ import Calendar from './Calendar';
 
 function CalendarContainer(props) {
 	// Extracted values
-	const { classes, curMonth, curYear, moodsArr, startTime, endTime } = props;
+	const {
+		classes,
+		curMonth,
+		curYear,
+		moodsArr,
+		startTime,
+		endTime,
+		openFilterModal,
+	} = props;
 	// Return array of days in current month and any logged moods --- day = { day: DAY_NUM,event: [...MOOD_EVENTS] }
 	const getDaysInMonth = () => {
 		const dateObject = moment(`${curMonth} ${curYear}`);
@@ -39,7 +47,12 @@ function CalendarContainer(props) {
 	const days = getDaysInMonth();
 	return (
 		<div className={classes.moodCalendarContainer}>
-			<Calendar curMonth={curMonth} curYear={curYear} days={days} />
+			<Calendar
+				curMonth={curMonth}
+				curYear={curYear}
+				days={days}
+				openFilterModal={openFilterModal}
+			/>
 		</div>
 	);
 }

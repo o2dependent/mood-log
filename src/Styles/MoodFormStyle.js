@@ -57,7 +57,7 @@ const style = {
 		width: '90%',
 		gridTemplateColumns: 'repeat(5,1fr)',
 		gridColumnGap: '5px',
-		background: colors.lightPurp,
+		background: colors.light,
 		borderRadius: '5px',
 	},
 	flashError: {
@@ -65,7 +65,7 @@ const style = {
 	},
 	'@keyframes flashErrorAnimation': {
 		'0%': {
-			background: colors.lightPurp,
+			background: colors.light,
 		},
 		'25%': {
 			background: colors.danger,
@@ -74,13 +74,13 @@ const style = {
 			background: colors.danger,
 		},
 		'100%': {
-			background: colors.lightPurp,
+			background: colors.light,
 		},
 	},
 	submitBtn: {
 		'&.MuiButton-root:hover': {
 			transitionDuration: '400ms',
-			backgroundColor: colors.medPurp,
+			backgroundColor: colors.med,
 		},
 		boxShadow: '0px 5px 5px rgba(0, 0, 0, 0.25)',
 		color: colors.white,
