@@ -49,11 +49,7 @@ class MoodForm extends Component {
 		return (
 			<div className={classes.modalContainer}>
 				<div className={classes.modalBG} onClick={removeMoodForm} />
-				<div
-					className={`${classes.moodForm} ${
-						this.state.showOpacity ? classes.show : classes.hide
-					}`}
-				>
+				<div className={classes.moodForm}>
 					<h1>How are you feeling right now?</h1>
 					<div
 						className={`${classes.emojiContainer} ${

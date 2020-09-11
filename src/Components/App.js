@@ -111,11 +111,11 @@ class App extends Component {
 				}
 				{/* TODO implement filters */}
 				{
-					/* Filter modal */ showFilterModal && (
+					/* Filter modal */
+					showFilterModal && (
 						<FilterModal close={this.toggleFilterModal(false)} />
 					)
 				}
-
 				<TitleCard
 					curMonthFormatted={curMonthFormatted}
 					curYear={curYear}

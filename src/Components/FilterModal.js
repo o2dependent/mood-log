@@ -1,13 +1,21 @@
-import React from 'react';
-import useStyles from '../Styles/FilterModalStyles';
+import React, { Component } from 'react';
+import style from '../Styles/FilterModalStyles';
+import { withStyles } from '@material-ui/styles';
 
-function FilterModal(props) {
-	const classes = useStyles();
-	return (
-		<div className={classes.filterContainer}>
-			<div className={classes.modalBG} />
-		</div>
-	);
+class FilterModal extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {};
+	}
+
+	render() {
+		const { classes, close } = this.props;
+		return (
+			<div className={classes.modalContainer}>
+				<div className={classes.modalBG} onClick={close} />
+			</div>
+		);
+	}
 }
 
-export default FilterModal;
+export default withStyles(style)(FilterModal);
