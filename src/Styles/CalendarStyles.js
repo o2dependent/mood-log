@@ -1,5 +1,4 @@
 import { makeStyles } from '@material-ui/styles';
-import colors from './colors';
 
 // TODO clean up unused styles
 

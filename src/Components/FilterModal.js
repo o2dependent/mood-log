@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import style from '../Styles/FilterModalStyles';
 import { withStyles } from '@material-ui/styles';
-import MoodTextField from './MoodTextField';
 import { Slider, Button, Typography } from '@material-ui/core';
 import moment from 'moment';
 
@@ -28,7 +27,7 @@ class FilterModal extends Component {
 
 	render() {
 		const { classes, close } = this.props;
-		const { month, year, startTime, endTime } = this.state;
+		const { startTime, endTime } = this.state;
 		return (
 			<div className={classes.modalContainer}>
 				<div className={classes.modalBG} onClick={close} />
