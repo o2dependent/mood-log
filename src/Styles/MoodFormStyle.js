@@ -1,11 +1,10 @@
 import colors from './colors';
 import modalStyle from './ModalStyles';
+import moodSliderStyles from './MoodSliderStyles';
 
 // TODO clean up unused styles
 
-const style = {
-	modalContainer: modalStyle.modalContainer,
-	modalBG: modalStyle.modalBG,
+let style = {
 	moodForm: {
 		display: 'grid',
 		justifyContent: 'center',
@@ -33,79 +32,33 @@ const style = {
 			},
 		},
 	},
-	emojiContainer: {
-		boxSizing: 'border-box',
-		transition: 'background 300ms',
-		boxShadow: '0px 5px 7px rgba(0, 0, 0, 0.25)',
-		padding: '1em',
-		margin: '0 auto',
-		display: 'grid',
-		width: '90%',
-		gridTemplateColumns: 'repeat(5,1fr)',
-		gridColumnGap: '5px',
-		background: colors.light,
-		borderRadius: '5px',
-	},
-	flashError: {
-		animation: '$flashErrorAnimation 1000ms linear',
-	},
-	'@keyframes flashErrorAnimation': {
-		'0%': {
-			background: colors.light,
-		},
-		'25%': {
-			background: colors.danger,
-		},
-		'75%': {
-			background: colors.danger,
-		},
-		'100%': {
-			background: colors.light,
-		},
-	},
 	submitBtn: {
 		'&.MuiButton-root:hover': {
 			transitionDuration: '400ms',
-			backgroundColor: colors.med,
+			backgroundColor: colors.card.itemSecondary,
 		},
-		boxShadow: '0px 5px 5px rgba(0, 0, 0, 0.25)',
 		color: colors.white,
-		background: colors.pink,
-		fontSize: '3vw',
-		fontWeight: '400',
+		background: colors.card.itemPrimary,
+		marginTop: '2.5%',
+		marginLeft: 'auto',
+		fontSize: '2vh',
+		fontWeight: '500',
 		outline: 'none',
 		border: 'none',
-		transform: 'translate(50%, 50%)',
-		position: 'absolute',
-		bottom: 0,
-		left: 0,
-		width: '50%',
-		height: '20%',
-		borderRadius: '10px',
-		textTransform: 'none',
-		'@media (max-width: 800px)': {
-			fontSize: '6vw',
-		},
+		width: 'fit-content',
+		padding: '2% 10%',
 	},
 	emoji: {
-		transition: 'all 500ms',
-		margin: '1%',
-		width: '90%',
-		opacity: '0.7',
-		'&:hover': {
-			opacity: '1',
-			transform: 'scale(1.2)',
-		},
+		margin: '0',
+		width: '100%',
 	},
-	active: {
-		'&$emoji': {
-			opacity: '1',
-			transform: 'scale(1.1)',
-			'&:hover': {
-				transform: 'scale(1.2)',
-			},
-		},
+	sliderLabel: {
+		textAlign: 'left',
+		margin: '0',
+		marginTop: '2vh',
 	},
 };
+
+style = Object.assign(style, modalStyle, moodSliderStyles);
 
 export default style;

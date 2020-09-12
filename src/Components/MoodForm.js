@@ -1,76 +1,112 @@
 import React, { Component } from 'react';
 import moment from 'moment';
-import { Button } from '@material-ui/core';
+import { Button, Slider, Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/styles';
 import MoodTextField from './MoodTextField';
 import style from '../Styles/MoodFormStyle';
 import emojiMoodArr from '../Helpers/emojiMoodArr';
+import colors from '../Styles/colors';
+import chroma from 'chroma-js';
 
 class MoodForm extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			activeMood: NaN,
+			activeMood: 2,
+			activeAnxiety: 0,
 			moodInput: '',
-			flashError: false,
 		};
+		this.anxietyScale = chroma.scale([
+			colors.anxietyScale0,
+			colors.anxietyScale1,
+		]);
 	}
 
-	setMood = (newMood) => {
-		this.setState({ activeMood: newMood });
+	set = (name) => (e, newVal) => {
+		this.setState({ [name]: newVal });
 	};
 
 	handleSubmit = () => {
-		if (!isNaN(this.state.activeMood)) {
-			const newMoment = moment();
-			const newMoodObj = {
-				slug: `${newMoment.format('MM DD YYYY')}`,
-				moodNum: this.state.activeMood,
-				moment: newMoment,
-				other: this.state.moodInput,
-			};
+		const { activeMood, activeAnxiety, moodInput } = this.state;
+		const newMoment = moment();
+		const newMoodObj = {
+			slug: `${newMoment.format('MM DD YYYY')}`,
+			moodNum: activeMood,
+			anxietyNum: activeAnxiety,
+			moment: newMoment,
+			other: moodInput,
+		};
 
-			this.props.addNewMood(newMoodObj);
+		this.props.addNewMood(newMoodObj);
 
-			this.setState({ activeMood: null, moodInput: '' });
-		} else {
-			this.setState({ flashError: true });
-			setTimeout(() => this.setState({ flashError: false }), 1000);
-		}
+		this.setState({ activeMood: null, moodInput: '' });
 	};
 
 	handleInputChange = (e) => {
-		this.setState({ moodInput: e.target.value, flashError: false });
+		this.setState({ moodInput: e.target.value });
 	};
 
 	render() {
 		const { classes, removeMoodForm } = this.props;
-		const { flashError } = this.state;
+		const { activeMood, activeAnxiety } = this.state;
 		return (
 			<div className={classes.modalContainer}>
 				<div className={classes.modalBG} onClick={removeMoodForm} />
 				<div className={classes.moodForm}>
 					<h1>How are you feeling right now?</h1>
-					<div
-						className={`${classes.emojiContainer} ${
-							flashError ? classes.flashError : ''
-						}`}
-					>
-						{emojiMoodArr.map((emoji, idx) => (
-							<div
-								key={`mood ${emoji}`}
-								onClick={() => this.setMood(idx)}
-							>
+					<div>
+						<Typography
+							className={classes.sliderLabel}
+							id='mood-slider'
+						>
+							Mood
+						</Typography>
+						<Slider
+							className={classes.moodSlider}
+							style={{
+								color: colors[`dateMood${activeMood}`],
+							}}
+							value={activeMood}
+							step={1}
+							min={0}
+							max={4}
+							onChange={this.set('activeMood')}
+							valueLabelDisplay='auto'
+							getAriaValueText={(value) => emojiMoodArr[value]}
+							valueLabelFormat={(value) => (
 								<img
-									className={`${classes.emoji} ${
-										this.state.activeMood === idx &&
-										classes.active
-									}`}
-									src={`/emojis/${emoji}.svg`}
-									alt={emoji}
+									className={classes.emoji}
+									src={`/emojis/${emojiMoodArr[value]}.svg`}
+									alt={emojiMoodArr[value]}
 								/>
-							</div>
-						))}
+							)}
+							aria-labelledby='mood-slider'
+						/>
+					</div>
+					<div>
+						<Typography
+							className={classes.sliderLabel}
+							id='anxiety-slider'
+						>
+							Anxiety
+						</Typography>
+						<Slider
+							className={classes.anxietySlider}
+							style={{
+								color: this.anxietyScale(
+									activeAnxiety / 100
+								).hex(),
+							}}
+							value={activeAnxiety}
+							step={1}
+							min={0}
+							max={100}
+							onChange={this.set('activeAnxiety')}
+							valueLabelDisplay='auto'
+							getAriaValueText={(value) => `${value}%`}
+							valueLabelFormat={(value) => `${value}%`}
+							aria-labelledby='mood-slider'
+						/>
 					</div>
 					<MoodTextField
 						label='Other thoughts'

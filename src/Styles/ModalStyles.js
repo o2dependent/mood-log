@@ -6,7 +6,7 @@ const modalStyle = {
 		left: 0,
 		width: '100%',
 		height: '100%',
-		animation: '150ms $fadeIn linear',
+		animation: '$fadeIn 150ms linear',
 	},
 	modalBG: {
 		position: 'fixed',

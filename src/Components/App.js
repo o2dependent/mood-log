@@ -8,6 +8,7 @@ import ShowDay from './ShowDay';
 import TitleCard from './TitleCard';
 import style from '../Styles/AppStyles';
 import FilterModal from './FilterModal';
+import FilterButton from './FilterButton';
 
 class App extends Component {
 	constructor(props) {
@@ -19,7 +20,7 @@ class App extends Component {
 			curMonth: moment().format('MMMM'),
 			curYear: moment().format('YYYY'),
 			startTime: 0,
-			endTime: 23,
+			endTime: 24,
 		};
 		this.weekdayShort = moment.weekdaysShort();
 	}
@@ -35,6 +36,11 @@ class App extends Component {
 			'moods',
 			JSON.stringify(this.state.moodsArr)
 		);
+	};
+
+	// Set state for filters
+	setFilter = (filterName) => (value) => {
+		this.setState({ [filterName]: value });
 	};
 
 	// Open mood form modal
@@ -96,6 +102,7 @@ class App extends Component {
 			endTime,
 			showMoodForm,
 			showFilterModal,
+			setFilter,
 		} = this.state;
 		const curMonthFormatted = this.formatMonth();
 		return (
@@ -113,9 +120,18 @@ class App extends Component {
 				{
 					/* Filter modal */
 					showFilterModal && (
-						<FilterModal close={this.toggleFilterModal(false)} />
+						<FilterModal
+							curMonth={curMonth}
+							curYear={curYear}
+							startTime={startTime}
+							endTime={endTime}
+							setFilter={setFilter}
+							close={this.toggleFilterModal(false)}
+						/>
 					)
 				}
+				<FilterButton open={this.toggleFilterModal(true)} />
+
 				<TitleCard
 					curMonthFormatted={curMonthFormatted}
 					curYear={curYear}
@@ -133,7 +149,6 @@ class App extends Component {
 								curYear={curYear}
 								curMonth={curMonth}
 								moodsArr={moodsArr}
-								openFilterModal={this.toggleFilterModal(true)}
 							/>
 						</Route>
 						<Route path='/calendar/day/:date'>

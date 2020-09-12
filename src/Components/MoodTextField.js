@@ -4,10 +4,14 @@ import colors from '../Styles/colors';
 
 const MoodTextField = withStyles({
 	root: {
-		width: '80%',
-		marginBottom: '8%',
-		marginTop: '2%',
+		width: '100%',
 		margin: '0 auto',
+		marginBottom: '2%',
+		marginTop: '2%',
+		'& *': {
+			textAlign: 'left',
+			fontSize: '2vh',
+		},
 		'&input:-internal-autofill-selected,input:-webkit-autofill,input:-webkit-autofill:hover, input:-webkit-autofill:focus,textarea:-webkit-autofill,textarea:-webkit-autofill:hover,textarea:-webkit-autofill:focus': {
 			border: 'none',
 			backgroundColor: 'transparent',
@@ -16,7 +20,6 @@ const MoodTextField = withStyles({
 			transition: 'background-color 5000s ease-in-out 0s',
 		},
 		'& label': {
-			fontSize: '2vw',
 			fontWeight: '300',
 			color: colors.white,
 		},
@@ -25,7 +28,6 @@ const MoodTextField = withStyles({
 		},
 		'& .MuiInputBase-input': {
 			color: colors.white,
-			fontSize: '2vw',
 			fontWeight: '300',
 		},
 		'& .MuiInput-underline:after': {
@@ -39,10 +41,10 @@ const MoodTextField = withStyles({
 		},
 		'@media (max-width: 800px)': {
 			'& .MuiInputBase-input': {
-				fontSize: '5vw',
+				fontSize: '2vh',
 			},
 			'& label': {
-				fontSize: '5vw',
+				fontSize: '2vh',
 			},
 		},
 	},

@@ -1,8 +1,12 @@
 import modalStyle from './ModalStyles';
 
-const style = {
-	modalContainer: modalStyle.modalContainer,
-	modalBG: modalStyle.modalBG,
+let style = {
+	filterForm: {
+		height: 'fit-content',
+		width: '95%',
+	},
 };
+
+Object.assign(style, modalStyle);
 
 export default style;

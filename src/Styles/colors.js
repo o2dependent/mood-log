@@ -10,9 +10,11 @@ const colors = {
 	white50: '#FAFAFA55',
 	dateMood0: '#972C2C',
 	dateMood1: '#D05E5E',
-	dateMood2: '#FCFF75',
+	dateMood2: '#a7906e',
 	dateMood3: '#7EC17E',
 	dateMood4: '#1F4F54',
+	anxietyScale0: '#7EC17E',
+	anxietyScale1: '#972C2C',
 	danger: '#C11531',
 	card: {
 		bgCard: '#6A62A4',
