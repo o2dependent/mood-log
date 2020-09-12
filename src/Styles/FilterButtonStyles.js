@@ -9,7 +9,7 @@ const useStyles = makeStyles({
 			display: 'flex',
 			justifyContent: 'center',
 			alignItems: 'center',
-			position: 'absolute',
+			position: 'fixed',
 			width: '6vh',
 			height: '6vh',
 			bottom: '2vh',

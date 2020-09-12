@@ -25,7 +25,6 @@ function ShowDay(props) {
 	};
 	// function dependent variables
 	const dayArr = findDays();
-	console.log(dayArr);
 	const hasMoods = dayArr.length > 0;
 	const avgMoodNum = hasMoods
 		? Math.floor(

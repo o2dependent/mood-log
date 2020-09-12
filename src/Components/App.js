@@ -10,6 +10,8 @@ import style from '../Styles/AppStyles';
 import FilterModal from './FilterModal';
 import FilterButton from './FilterButton';
 
+// TODO add calendar scroll or swipe functionality | arrows on side for desktop?
+
 class App extends Component {
 	constructor(props) {
 		super(props);
@@ -19,7 +21,7 @@ class App extends Component {
 			showFilterModal: false,
 			curMonth: moment().format('MMMM'),
 			curYear: moment().format('YYYY'),
-			startTime: 0,
+			startTime: -1,
 			endTime: 24,
 		};
 		this.weekdayShort = moment.weekdaysShort();
@@ -31,7 +33,6 @@ class App extends Component {
 			moodsArr: [...st.moodsArr, newMoodObj],
 			showMoodForm: false,
 		}));
-
 		window.localStorage.setItem(
 			'moods',
 			JSON.stringify(this.state.moodsArr)
@@ -39,8 +40,10 @@ class App extends Component {
 	};
 
 	// Set state for filters
-	setFilter = (filterName) => (value) => {
-		this.setState({ [filterName]: value });
+	setFilter = (filterObj) => {
+		Object.keys(filterObj).forEach((key) =>
+			this.setState({ [key]: filterObj[key] })
+		);
 	};
 
 	// Open mood form modal
@@ -60,7 +63,6 @@ class App extends Component {
 				...st.moodsArr.slice(idx + 1, st.moodsArr.length),
 			],
 		}));
-
 		window.localStorage.setItem(
 			'moods',
 			JSON.stringify(this.state.moodsArr)
@@ -88,7 +90,6 @@ class App extends Component {
 		) {
 			return;
 		}
-
 		this.setState({ showFilterModal: open });
 	};
 
@@ -102,7 +103,6 @@ class App extends Component {
 			endTime,
 			showMoodForm,
 			showFilterModal,
-			setFilter,
 		} = this.state;
 		const curMonthFormatted = this.formatMonth();
 		return (
@@ -125,13 +125,12 @@ class App extends Component {
 							curYear={curYear}
 							startTime={startTime}
 							endTime={endTime}
-							setFilter={setFilter}
+							setFilter={this.setFilter}
 							close={this.toggleFilterModal(false)}
 						/>
 					)
 				}
 				<FilterButton open={this.toggleFilterModal(true)} />
-
 				<TitleCard
 					curMonthFormatted={curMonthFormatted}
 					curYear={curYear}

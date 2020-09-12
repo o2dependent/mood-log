@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 import style from '../Styles/FilterModalStyles';
 import { withStyles } from '@material-ui/styles';
 import MoodTextField from './MoodTextField';
-import { Slider } from '@material-ui/core';
+import { Slider, Button, Typography } from '@material-ui/core';
+import moment from 'moment';
 
 class FilterModal extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			month: this.props.curMonth,
-			year: this.props.curYear,
+			curMonth: this.props.curMonth,
+			curYear: this.props.curYear,
 			startTime: this.props.startTime,
 			endTime: this.props.endTime,
 		};
@@ -19,6 +20,12 @@ class FilterModal extends Component {
 		this.setState({ startTime: value[0], endTime: value[1] });
 	};
 
+	handleSubmit = () => {
+		const filterObj = Object.assign(this.state);
+		this.props.setFilter(filterObj);
+		this.props.close();
+	};
+
 	render() {
 		const { classes, close } = this.props;
 		const { month, year, startTime, endTime } = this.state;
@@ -26,19 +33,36 @@ class FilterModal extends Component {
 			<div className={classes.modalContainer}>
 				<div className={classes.modalBG} onClick={close} />
 				<div className={classes.filterForm}>
-					<Slider
-						value={[startTime, endTime]}
-						min={0}
-						max={24}
-						valueLabelDisplay='auto'
-						onChange={this.handleTimeRange}
-						valueLabelFormat={(value) =>
-							`${(value % 12) + 1} ${value > 12 ? 'pm' : 'am'}`
-						}
-						getAriaValueText={(value) =>
-							`${(value % 12) + 1} ${value > 12 ? 'pm' : 'am'}`
-						}
-					/>
+					<h1>How are you feeling right now?</h1>
+					<div>
+						<Typography
+							className={classes.sliderLabel}
+							id='time-slider'
+							gutterBottom
+						>
+							Time Range
+						</Typography>
+						<Slider
+							className={classes.timeSlider}
+							value={[startTime, endTime]}
+							min={-1}
+							max={24}
+							valueLabelDisplay='auto'
+							onChange={this.handleTimeRange}
+							valueLabelFormat={(value) =>
+								moment(value, 'H').format('ha')
+							}
+							getAriaValueText={(value) =>
+								moment(value, 'H').format('ha')
+							}
+						/>
+					</div>
+					<Button
+						className={classes.submitBtn}
+						onClick={this.handleSubmit}
+					>
+						Save
+					</Button>
 				</div>
 			</div>
 		);

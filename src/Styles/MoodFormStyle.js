@@ -13,9 +13,9 @@ let style = {
 		top: '50%',
 		transform: 'translate(0,-50%)',
 		height: 'fit-content',
-		width: '50%',
+		width: '90%',
 		margin: '0 auto',
-		padding: '1em 0.5em',
+		padding: '1em 2.5%',
 		paddingTop: '2em',
 		background: colors.bgAccent,
 		borderRadius: '10px',
@@ -32,30 +32,9 @@ let style = {
 			},
 		},
 	},
-	submitBtn: {
-		'&.MuiButton-root:hover': {
-			transitionDuration: '400ms',
-			backgroundColor: colors.card.itemSecondary,
-		},
-		color: colors.white,
-		background: colors.card.itemPrimary,
-		marginTop: '2.5%',
-		marginLeft: 'auto',
-		fontSize: '2vh',
-		fontWeight: '500',
-		outline: 'none',
-		border: 'none',
-		width: 'fit-content',
-		padding: '2% 10%',
-	},
 	emoji: {
 		margin: '0',
 		width: '100%',
-	},
-	sliderLabel: {
-		textAlign: 'left',
-		margin: '0',
-		marginTop: '2vh',
 	},
 };
 
