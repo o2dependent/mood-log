@@ -20,7 +20,6 @@ const useStyles = makeStyles({
 			'0px 0px 2px rgba(0, 0, 0, 0.25), 0px 0px 7px rgba(0, 0, 0, 0.5)',
 		borderRadius: '5px',
 		padding: '1vh 0',
-		paddingBottom: '3.2vh',
 		display: 'grid',
 		gridTemplateColumns: '1fr',
 		gridTemplateRows: (dayArr) =>
@@ -29,7 +28,7 @@ const useStyles = makeStyles({
 			paddingBottom: '10px',
 		},
 		'& p': {
-			fontSize: '4vw',
+			fontSize: '3.5vw',
 		},
 	},
 	dayItem: {
@@ -76,9 +75,7 @@ const useStyles = makeStyles({
 	cardButton: {
 		'&.MuiButton-root:hover': {
 			transition: 'all 400ms',
-			background: colors.pink,
-			transform: 'translate(50%, 45%)',
-			boxShadow: '0px 7px 7px rgba(0, 0, 0, 0.45)',
+			background: colors.card.itemSecondary,
 		},
 		'&.MuiButton-root': {},
 		'&.moodLogsButton': {
@@ -89,19 +86,17 @@ const useStyles = makeStyles({
 		},
 		boxSizing: 'border-box',
 		transition: 'all 200ms',
-		boxShadow: '0px 5px 5px rgba(0, 0, 0, 0.25)',
 		color: colors.white,
-		background: colors.pink,
+		background: colors.card.itemPrimary,
 		fontSize: '2vw',
 		fontWeight: '400',
 		outline: 'none',
 		border: 'none',
-		transform: 'translate(50%, 50%)',
-		position: 'absolute',
-		bottom: 0,
-		left: 0,
 		width: '50%',
 		height: 'fit-content',
+		marginTop: '2.5%',
+		marginLeft: 'auto',
+		marginRight: '1.5%',
 		padding: '0',
 		borderRadius: '5px',
 		textTransform: 'none',

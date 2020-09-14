@@ -6,22 +6,21 @@ import colors from '../Styles/colors';
 import { Button } from '@material-ui/core';
 import DayForm from './DayForm';
 import useStyles from '../Styles/ShowDayStyles';
+import Modal from './Modal';
 
 function ShowDay(props) {
 	// pre function variables
 	const { date } = useParams();
 	const [formOpen, setFormState] = useState(false);
-	const { moodsArr } = props;
-	const dayIdx = [];
+	const { days } = props;
 	// functions for variables
 	const findDays = () => {
-		return moodsArr
-			.filter((d, i) => (d.slug === date ? dayIdx.push(i) : null))
-			.sort(
-				(a, b) =>
-					Number(moment(a.moment).format('HH.mm')) -
-					Number(moment(b.moment).format('HH.mm'))
-			);
+		const dayIdx = Number(moment(date).format('D')) - 1;
+		return [...days[dayIdx].event].sort(
+			(a, b) =>
+				Number(moment(a.moment).format('HH.mm')) -
+				Number(moment(b.moment).format('HH.mm'))
+		);
 	};
 	// function dependent variables
 	const dayArr = findDays();
@@ -46,18 +45,21 @@ function ShowDay(props) {
 
 	return (
 		<div className={classes.showDay}>
-			{formOpen && (
+			<Modal isToggled={formOpen} close={removeDayForm}>
 				<DayForm
 					date={date}
 					addDayMood={addDayMood}
 					removeDayForm={removeDayForm}
 				/>
-			)}
+			</Modal>
 			<div className={classes.dayItemContainer}>
 				<h4>Mood of the day</h4>
 				{hasMoods ? (
 					dayArr.map((d, i) => (
-						<div className={classes.dayItem}>
+						<div
+							key={`${d.moment} ${i}`}
+							className={classes.dayItem}
+						>
 							<p className={classes.dayTime}>
 								{moment(d.moment).format('hh:mm a')}
 							</p>
@@ -121,7 +123,7 @@ function ShowDay(props) {
 						</div>
 					</div>
 				) : (
-					<p>No moods to average</p>
+					<></>
 				)}
 			</div>
 		</div>

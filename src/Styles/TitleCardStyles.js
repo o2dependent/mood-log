@@ -14,10 +14,11 @@ const useStyles = makeStyles({
 		position: 'fixed',
 		top: 0,
 		left: 0,
-		boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+		boxShadow:
+			'0px 0px 2px rgba(0, 0, 0, 0.25), 0px 0px 7px rgba(0, 0, 0, 0.5)',
+
 		width: '100%',
-		minHeight: '10vh',
-		height: '10vh',
+		height: '100vh',
 		padding: '2vh 0',
 		color: colors.white,
 		background: colors.bgAccent,
@@ -42,8 +43,6 @@ const useStyles = makeStyles({
 		fontSize: '3.25vh',
 		boxSizing: 'border-box',
 		width: 'fit-content',
-		boxShadow:
-			'inset 0px 2px 6px rgba(0, 0, 0, 0.25), 0px 1px 2px rgba(0, 0, 0, 0.1)',
 		padding: '1% 5%',
 		borderRadius: '5px',
 		background: colors.light,
@@ -72,10 +71,7 @@ const useStyles = makeStyles({
 			height: '50%',
 			width: '90%',
 			margin: '0 auto',
-			boxShadow:
-				'inset 2px 2px 4px rgba(0, 0, 0, 0.25),inset 0px 10px 24px rgba(0, 0, 0, 0.25)',
-			textShadow: '0px 0px 2px rgba(0,0,0,0.25)',
-			background: `${colors.light}AA`,
+			background: colors.card.itemPrimary,
 		},
 	},
 	navBottom: {
@@ -85,8 +81,8 @@ const useStyles = makeStyles({
 		width: '90%',
 		margin: '0 auto',
 		'& .MuiButton-root': {
-			color: `${colors.white}BB`,
-			background: colors.bgAccent,
+			color: colors.white,
+			background: colors.card.itemSecondary,
 			height: '100%',
 			width: '90%',
 			justifySelf: 'flex-end',

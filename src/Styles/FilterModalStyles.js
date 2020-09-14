@@ -5,14 +5,12 @@ import moodSliderStyles from './MoodSliderStyles';
 let style = {
 	filterForm: {
 		display: 'grid',
+		gridTemplateColumns: '100%',
 		justifyContent: 'center',
 		alignItems: 'center',
-		position: 'relative',
-		top: '50%',
-		transform: 'translate(0,-50%)',
 		height: 'fit-content',
-		width: '90%',
-		margin: '0 auto',
+		width: '100%',
+		margin: '0',
 		padding: '1em 2.5%',
 		paddingTop: '2em',
 		background: colors.bgAccent,
@@ -24,7 +22,6 @@ let style = {
 			fontWeight: '300',
 		},
 		'@media (max-width: 800px)': {
-			width: '90%',
 			'& h1': {
 				fontSize: '5vw',
 			},

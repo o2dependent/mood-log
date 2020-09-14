@@ -26,43 +26,40 @@ class FilterModal extends Component {
 	};
 
 	render() {
-		const { classes, close } = this.props;
+		const { classes } = this.props;
 		const { startTime, endTime } = this.state;
 		return (
-			<div className={classes.modalContainer}>
-				<div className={classes.modalBG} onClick={close} />
-				<div className={classes.filterForm}>
-					<h1>How are you feeling right now?</h1>
-					<div>
-						<Typography
-							className={classes.sliderLabel}
-							id='time-slider'
-							gutterBottom
-						>
-							Time Range
-						</Typography>
-						<Slider
-							className={classes.timeSlider}
-							value={[startTime, endTime]}
-							min={-1}
-							max={24}
-							valueLabelDisplay='auto'
-							onChange={this.handleTimeRange}
-							valueLabelFormat={(value) =>
-								moment(value, 'H').format('ha')
-							}
-							getAriaValueText={(value) =>
-								moment(value, 'H').format('ha')
-							}
-						/>
-					</div>
-					<Button
-						className={classes.submitBtn}
-						onClick={this.handleSubmit}
+			<div className={classes.filterForm}>
+				<h1>Add Filters</h1>
+				<div>
+					<Typography
+						className={classes.sliderLabel}
+						id='time-slider'
+						gutterBottom
 					>
-						Save
-					</Button>
+						Time Range
+					</Typography>
+					<Slider
+						className={classes.timeSlider}
+						value={[startTime, endTime]}
+						min={-1}
+						max={24}
+						valueLabelDisplay='auto'
+						onChange={this.handleTimeRange}
+						valueLabelFormat={(value) =>
+							moment(value, 'H').format('ha')
+						}
+						getAriaValueText={(value) =>
+							moment(value, 'H').format('ha')
+						}
+					/>
 				</div>
+				<Button
+					className={classes.submitBtn}
+					onClick={this.handleSubmit}
+				>
+					Save
+				</Button>
 			</div>
 		);
 	}

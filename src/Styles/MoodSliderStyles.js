@@ -2,7 +2,9 @@ import colors from './colors';
 
 const moodSliderStyles = {
 	moodSlider: {
+		width: '90%',
 		transition: 'color 500ms',
+		margin: '10px auto',
 		padding: '0',
 		'& .MuiSlider-track': {
 			background: 'none',
@@ -21,7 +23,9 @@ const moodSliderStyles = {
 		},
 	},
 	anxietySlider: {
+		width: '90%',
 		transition: 'color 500ms',
+		margin: '10px auto',
 		padding: '0',
 		'& .MuiSlider-track': {
 			height: '10px',
@@ -49,7 +53,7 @@ const moodSliderStyles = {
 			height: '10px',
 			borderRadius: '5px',
 			transform: 'translate(0,-50%)',
-			background: colors.pink,
+			background: colors.card.itemSecondary,
 		},
 		'& .MuiSlider-rail': {
 			height: '10px',
@@ -63,13 +67,14 @@ const moodSliderStyles = {
 			background: colors.white,
 		},
 		'& .MuiSlider-valueLabel': {
-			color: colors.pink,
+			color: colors.card.itemPrimary,
 		},
 	},
 	sliderLabel: {
 		textAlign: 'left',
 		margin: '0',
 		marginTop: '2vh',
+		marginLeft: '5%',
 	},
 };
 

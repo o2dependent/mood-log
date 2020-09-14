@@ -11,15 +11,6 @@ const style = {
 			margin: '0 auto',
 		},
 	},
-	titleMonthCollapsed: {
-		'&$titleMonth': {
-			transform: 'translate(0,50%)',
-			boxShadow: '0px 5px 5px rgba(0, 0, 0, 0.25)',
-			'& span': {
-				fontSize: '0px',
-			},
-		},
-	},
 	switch: {
 		'& .MuiSwitch-switchBase': {
 			color: colors.white,

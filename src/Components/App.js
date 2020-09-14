@@ -9,6 +9,7 @@ import TitleCard from './TitleCard';
 import style from '../Styles/AppStyles';
 import FilterModal from './FilterModal';
 import FilterButton from './FilterButton';
+import Modal from './Modal';
 
 // TODO add calendar scroll or swipe functionality | arrows on side for desktop?
 
@@ -23,9 +24,14 @@ class App extends Component {
 			curYear: moment().format('YYYY'),
 			startTime: -1,
 			endTime: 24,
+			days: [],
 		};
 		this.weekdayShort = moment.weekdaysShort();
 	}
+
+	componentDidMount = () => {
+		this.setState({ days: this.getDaysInMonth() });
+	};
 
 	// Add new mood to state and local storage
 	addNewMood = async (newMoodObj) => {
@@ -44,12 +50,14 @@ class App extends Component {
 		Object.keys(filterObj).forEach((key) =>
 			this.setState({ [key]: filterObj[key] })
 		);
+		this.setState({ days: this.getDaysInMonth });
 	};
 
 	// Open mood form modal
 	showMoodForm = () => {
 		this.setState({ showMoodForm: true });
 	};
+
 	// Close mood form modal
 	removeMoodForm = () => {
 		this.setState({ showMoodForm: false });
@@ -69,18 +77,6 @@ class App extends Component {
 		);
 	};
 
-	// Format month for collapsed and open states
-	formatMonth = () => {
-		const month = this.state.curMonth;
-		const first = month.slice(0, 3);
-		const last = <span>{month.slice(3)}</span>;
-		const formatted = {
-			first: first,
-			last: last,
-		};
-		return formatted;
-	};
-
 	// Toggle filter modal
 	toggleFilterModal = (open) => (e) => {
 		if (
@@ -93,10 +89,38 @@ class App extends Component {
 		this.setState({ showFilterModal: open });
 	};
 
+	// Return array of days in current month and any logged moods --- day = { day: DAY_NUM,event: [...MOOD_EVENTS] }
+	getDaysInMonth = () => {
+		const { moodsArr, curMonth, curYear, startTime, endTime } = this.state;
+		const dateObject = moment(`${curMonth} ${curYear}`);
+		const lastDay = moment(dateObject).endOf('month').format('D');
+
+		const daysArr = new Array(Number(lastDay))
+			.fill()
+			.map((v, i) => ({ day: i + 1, event: [] }));
+
+		moodsArr.forEach((m) => {
+			const newMoment = moment(m.moment);
+			const dayIdx = Number(newMoment.format('D')) - 1;
+
+			const month = newMoment.format('MMMM');
+			const year = newMoment.format('YYYY');
+			const dateValid = month === curMonth && year === curYear;
+
+			const time = Number(newMoment.format('H'));
+			const timeValid = time >= startTime && time <= endTime;
+
+			if (dateValid && timeValid) {
+				daysArr[dayIdx].event.push(m);
+			}
+		});
+
+		return daysArr;
+	};
+
 	render() {
 		const { classes } = this.props;
 		const {
-			moodsArr,
 			curYear,
 			curMonth,
 			startTime,
@@ -104,55 +128,54 @@ class App extends Component {
 			showMoodForm,
 			showFilterModal,
 		} = this.state;
-		const curMonthFormatted = this.formatMonth();
+		const days = this.getDaysInMonth();
 		return (
 			<div className={classes.app}>
-				{
-					/* Mood Modal */
-					showMoodForm && (
-						<MoodForm
-							addNewMood={this.addNewMood}
-							removeMoodForm={this.removeMoodForm}
-						/>
-					)
-				}
-				{/* TODO implement filters */}
-				{
-					/* Filter modal */
-					showFilterModal && (
-						<FilterModal
-							curMonth={curMonth}
-							curYear={curYear}
-							startTime={startTime}
-							endTime={endTime}
-							setFilter={this.setFilter}
-							close={this.toggleFilterModal(false)}
-						/>
-					)
-				}
+				<Modal isToggled={showMoodForm} close={this.removeMoodForm}>
+					{/* Mood Modal */}
+					<MoodForm addNewMood={this.addNewMood} />
+				</Modal>
+				{/* TODO implement additional filters */}
+				{/* Filter modal */}
+				<Modal
+					isToggled={showFilterModal}
+					close={this.toggleFilterModal(false)}
+				>
+					<FilterModal
+						curMonth={curMonth}
+						curYear={curYear}
+						startTime={startTime}
+						endTime={endTime}
+						setFilter={this.setFilter}
+						close={this.toggleFilterModal(false)}
+					/>
+				</Modal>
 				<FilterButton open={this.toggleFilterModal(true)} />
 				<TitleCard
-					curMonthFormatted={curMonthFormatted}
+					curMonth={curMonth}
 					curYear={curYear}
 					showMoodForm={this.showMoodForm}
 				/>
 				<div className={classes.page}>
 					<Switch>
+						{/* HOME | REDIRECT TO CALENDAR */}
 						<Route exact path='/'>
 							<Redirect to='/calendar' />
 						</Route>
+						{/* CALENDAR */}
 						<Route exact path='/calendar'>
 							<CalendarContainer
 								startTime={startTime}
 								endTime={endTime}
 								curYear={curYear}
 								curMonth={curMonth}
-								moodsArr={moodsArr}
+								days={days}
 							/>
 						</Route>
+						{/* SHOW DAY */}
 						<Route path='/calendar/day/:date'>
 							<ShowDay
-								moodsArr={moodsArr}
+								days={days}
 								addNewMood={this.addNewMood}
 								removeMood={this.removeMood}
 							/>

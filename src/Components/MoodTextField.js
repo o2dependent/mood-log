@@ -4,13 +4,13 @@ import colors from '../Styles/colors';
 
 const MoodTextField = withStyles({
 	root: {
-		width: '100%',
+		width: '90%',
 		margin: '0 auto',
 		marginBottom: '2%',
 		marginTop: '2%',
 		'& *': {
 			textAlign: 'left',
-			fontSize: '2vh',
+			fontSize: '5vw',
 		},
 		'&input:-internal-autofill-selected,input:-webkit-autofill,input:-webkit-autofill:hover, input:-webkit-autofill:focus,textarea:-webkit-autofill,textarea:-webkit-autofill:hover,textarea:-webkit-autofill:focus': {
 			border: 'none',
@@ -41,10 +41,10 @@ const MoodTextField = withStyles({
 		},
 		'@media (max-width: 800px)': {
 			'& .MuiInputBase-input': {
-				fontSize: '2vh',
+				fontSize: '5vw',
 			},
 			'& label': {
-				fontSize: '2vh',
+				fontSize: '5vw',
 			},
 		},
 	},
