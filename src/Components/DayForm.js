@@ -7,6 +7,7 @@ import style from '../Styles/MoodFormStyle';
 import emojiMoodArr from '../Helpers/emojiMoodArr';
 import colors from '../Styles/colors';
 import chroma from 'chroma-js';
+import { v4 as uuid } from 'uuid';
 
 class MoodForm extends Component {
 	constructor(props) {
@@ -37,6 +38,7 @@ class MoodForm extends Component {
 			anxietyNum: activeAnxiety,
 			moment: newMoment,
 			other: moodInput,
+			id: uuid(),
 		};
 
 		this.props.addDayMood(newMoodObj);

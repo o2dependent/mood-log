@@ -60,13 +60,21 @@ function ShowDay(props) {
 			<div className={classes.dayItemContainer}>
 				<h4>Mood of the day</h4>
 				{/* TODO add anxiety toggler */}
-				{hasMoods ? (
-					dayArr.map((d, i) => (
-						<AnimatePresence key={d.id}>
+				<AnimatePresence key={`dayAnimate`}>
+					{hasMoods ? (
+						dayArr.map((d, i) => (
 							<motion.div
-								key={d.id}
-								exit={{ height: 0, width: 0 }}
+								key={`${d.id} dayItem`}
 								className={classes.dayItem}
+								initial={{ opacity: 0 }}
+								animate={{ opacity: 1 }}
+								exit={{ height: 0 }}
+								transition={{
+									opacity: {
+										duration: 1,
+										delay: i * 0.1,
+									},
+								}}
 							>
 								<p className={classes.dayTime}>
 									{moment(d.moment).format('hh:mm a')}
@@ -90,10 +98,12 @@ function ShowDay(props) {
 										}90`,
 									}}
 								>
-									<AnimatePresence>
+									<AnimatePresence
+										key={`${d.id} trashAnimate`}
+									>
 										{canDelete && (
 											<motion.div
-												key={d.id}
+												key={`${d.id} trash`}
 												onClick={() =>
 													removeMood(d.idx)
 												}
@@ -149,11 +159,11 @@ function ShowDay(props) {
 									/>
 								</div>
 							</motion.div>
-						</AnimatePresence>
-					))
-				) : (
-					<p>No moods to show</p>
-				)}
+						))
+					) : (
+						<p>No moods to show</p>
+					)}
+				</AnimatePresence>
 				<div className={classes.buttonContainer}>
 					{hasMoods ? (
 						<Button

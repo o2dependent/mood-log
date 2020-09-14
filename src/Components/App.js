@@ -10,8 +10,6 @@ import style from '../Styles/AppStyles';
 import FilterModal from './FilterModal';
 import FilterButton from './FilterButton';
 import Modal from './Modal';
-import { motion, AnimatePresence } from 'framer-motion';
-import { v4 as uuid } from 'uuid';
 
 // TODO add calendar scroll or swipe functionality | arrows on side for desktop?
 
@@ -114,12 +112,7 @@ class App extends Component {
 			const timeValid = time >= startTime && time <= endTime;
 
 			if (dateValid && timeValid) {
-				daysArr[dayIdx].event.push(
-					Object.assign(
-						{ idx: i, id: m.id !== undefined ? uuid() : m.id },
-						m
-					)
-				);
+				daysArr[dayIdx].event.push(Object.assign({ idx: i }, m));
 			}
 		});
 
@@ -136,7 +129,6 @@ class App extends Component {
 			showMoodForm,
 			showFilterModal,
 			/* TODO add anxiety | mood average toggler */
-			averageType,
 		} = this.state;
 		const days = this.getDaysInMonth();
 		return (
