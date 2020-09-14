@@ -110,7 +110,6 @@ class MoodForm extends Component {
 					name='time'
 					label='Time'
 					type='time'
-					defaultValue='07:30'
 					value={time}
 					onChange={this.handleInputChange}
 				/>

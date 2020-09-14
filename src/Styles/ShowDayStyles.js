@@ -1,5 +1,6 @@
 import colors from './colors';
 import { makeStyles } from '@material-ui/styles';
+import chroma from 'chroma-js';
 
 // TODO clean up unused styles
 
@@ -22,8 +23,6 @@ const useStyles = makeStyles({
 		padding: '1vh 0',
 		display: 'grid',
 		gridTemplateColumns: '1fr',
-		gridTemplateRows: (dayArr) =>
-			`fit-content(1fr) repeat(${dayArr.length}, 1fr)`,
 		'& h4': {
 			paddingBottom: '10px',
 		},
@@ -33,6 +32,7 @@ const useStyles = makeStyles({
 	},
 	dayItem: {
 		display: 'grid',
+		overflow: 'hidden',
 		gridTemplateColumns: '1.5fr 6fr 1.5fr',
 		gridTemplateRows: '1fr',
 		padding: '0',
@@ -62,6 +62,8 @@ const useStyles = makeStyles({
 		},
 	},
 	dayEmoji: {
+		position: 'relative',
+		overflow: 'hidden',
 		height: '100%',
 		width: '100%',
 		display: 'flex',
@@ -84,6 +86,8 @@ const useStyles = makeStyles({
 				background: colors.light,
 			},
 		},
+		marginRight: '0',
+		marginLeft: 'auto',
 		boxSizing: 'border-box',
 		transition: 'all 200ms',
 		color: colors.white,
@@ -92,18 +96,21 @@ const useStyles = makeStyles({
 		fontWeight: '400',
 		outline: 'none',
 		border: 'none',
-		width: '50%',
+		width: '90%',
 		height: 'fit-content',
-		marginTop: '2.5%',
-		marginLeft: 'auto',
-		marginRight: '1.5%',
 		padding: '0',
 		borderRadius: '5px',
 		textTransform: 'none',
 		'@media (max-width: 800px)': {
 			fontSize: '5vw',
 		},
+		'&:first-of-type': {
+			marginRight: 'auto',
+			marginLeft: '0',
+		},
+		'&$deleteButton': {},
 	},
+	deleteButton: {},
 	dayAvg: {
 		marginTop: '4vh',
 		borderRadius: '5px',
@@ -138,6 +145,25 @@ const useStyles = makeStyles({
 			height: '90%',
 			width: '100%',
 		},
+	},
+	buttonContainer: {
+		width: '95%',
+		margin: '0 auto',
+		marginTop: '2.5%',
+		display: 'grid',
+		gridTemplateColumns: 'repeat(2, 1fr)',
+	},
+	deleteMood: {
+		zIndex: 10,
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center',
+		position: 'absolute',
+		width: '200%',
+		height: '200%',
+		background: chroma
+			.scale([colors.danger, colors.card.itemPrimary])
+			.colors(10)[2],
 	},
 });
 

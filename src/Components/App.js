@@ -10,7 +10,8 @@ import style from '../Styles/AppStyles';
 import FilterModal from './FilterModal';
 import FilterButton from './FilterButton';
 import Modal from './Modal';
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { v4 as uuid } from 'uuid';
 
 // TODO add calendar scroll or swipe functionality | arrows on side for desktop?
 
@@ -101,7 +102,7 @@ class App extends Component {
 			.fill()
 			.map((v, i) => ({ day: i + 1, event: [] }));
 
-		moodsArr.forEach((m) => {
+		moodsArr.forEach((m, i) => {
 			const newMoment = moment(m.moment);
 			const dayIdx = Number(newMoment.format('D')) - 1;
 
@@ -113,7 +114,12 @@ class App extends Component {
 			const timeValid = time >= startTime && time <= endTime;
 
 			if (dateValid && timeValid) {
-				daysArr[dayIdx].event.push(m);
+				daysArr[dayIdx].event.push(
+					Object.assign(
+						{ idx: i, id: m.id !== undefined ? uuid() : m.id },
+						m
+					)
+				);
 			}
 		});
 
@@ -168,15 +174,13 @@ class App extends Component {
 						</Route>
 						{/* CALENDAR */}
 						<Route exact path='/calendar'>
-							<motion.div>
-								<CalendarContainer
-									startTime={startTime}
-									endTime={endTime}
-									curYear={curYear}
-									curMonth={curMonth}
-									days={days}
-								/>
-							</motion.div>
+							<CalendarContainer
+								startTime={startTime}
+								endTime={endTime}
+								curYear={curYear}
+								curMonth={curMonth}
+								days={days}
+							/>
 						</Route>
 						{/* SHOW DAY */}
 						<Route path='/calendar/day/:date'>

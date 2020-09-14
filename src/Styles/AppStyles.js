@@ -9,6 +9,7 @@ const style = {
 		background: colors.bg,
 	},
 	page: {
+		overflowX: 'hidden',
 		marginTop: '10vh',
 		maxHeight: '90vh',
 		flexGrow: 1,

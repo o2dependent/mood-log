@@ -4,6 +4,7 @@ const { makeStyles } = require('@material-ui/styles');
 
 const useStyles = makeStyles({
 	filterButton: {
+		zIndex: 100,
 		'&.MuiFab-root': {
 			transition: 'box-shadow 500ms, transform 500ms',
 			display: 'flex',

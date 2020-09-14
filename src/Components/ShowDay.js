@@ -6,21 +6,26 @@ import colors from '../Styles/colors';
 import { Button } from '@material-ui/core';
 import DayForm from './DayForm';
 import useStyles from '../Styles/ShowDayStyles';
+import chroma from 'chroma-js';
 import Modal from './Modal';
+import { motion, AnimatePresence } from 'framer-motion';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 function ShowDay(props) {
 	// pre function variables
 	const { date } = useParams();
 	const [formOpen, setFormState] = useState(false);
-	const { days } = props;
+	const [canDelete, setCanDelete] = useState(false);
+	const { days, removeMood } = props;
 	// functions for variables
 	const findDays = () => {
-		const dayIdx = Number(moment(date).format('D')) - 1;
-		return [...days[dayIdx].event].sort(
-			(a, b) =>
+		const todayIdx = Number(moment(date).format('D')) - 1;
+		return [...days[todayIdx].event].sort((a, b) => {
+			return (
 				Number(moment(a.moment).format('HH.mm')) -
 				Number(moment(b.moment).format('HH.mm'))
-		);
+			);
+		});
 	};
 	// function dependent variables
 	const dayArr = findDays();
@@ -57,49 +62,124 @@ function ShowDay(props) {
 				{/* TODO add anxiety toggler */}
 				{hasMoods ? (
 					dayArr.map((d, i) => (
-						<div
-							key={`${d.moment} ${i}`}
-							className={classes.dayItem}
-						>
-							<p className={classes.dayTime}>
-								{moment(d.moment).format('hh:mm a')}
-							</p>
-							<div
-								className={`${classes.dayNotes} ${
-									d.other.length > 0 ? '' : 'noNote'
-								}`}
+						<AnimatePresence key={d.id}>
+							<motion.div
+								key={d.id}
+								exit={{ height: 0, width: 0 }}
+								className={classes.dayItem}
 							>
-								<p>
-									{d.other.length > 0 ? d.other : 'No note'}
+								<p className={classes.dayTime}>
+									{moment(d.moment).format('hh:mm a')}
 								</p>
-							</div>
-							<div
-								className={classes.dayEmoji}
-								style={{
-									background: `${
-										colors[`dateMood${d.moodNum}`]
-									}90`,
-								}}
-							>
-								<img
-									src={
-										process.env.PUBLIC_URL +
-										`/emojis/${emojiMoodArr[d.moodNum]}.svg`
-									}
-									alt={emojiMoodArr[d.moodNum]}
-								/>
-							</div>
-						</div>
+								<div
+									className={`${classes.dayNotes} ${
+										d.other.length > 0 ? '' : 'noNote'
+									}`}
+								>
+									<p>
+										{d.other.length > 0
+											? d.other
+											: 'No note'}
+									</p>
+								</div>
+								<div
+									className={classes.dayEmoji}
+									style={{
+										background: `${
+											colors[`dateMood${d.moodNum}`]
+										}90`,
+									}}
+								>
+									<AnimatePresence>
+										{canDelete && (
+											<motion.div
+												key={d.id}
+												onClick={() =>
+													removeMood(d.idx)
+												}
+												className={classes.deleteMood}
+												initial={{
+													rotate: 90,
+													opacity: 0,
+													scale: 1.2,
+													x: '100%',
+												}}
+												animate={{
+													rotate: 0,
+													opacity: 1,
+													scale: 1,
+													x: 0,
+												}}
+												exit={{
+													opacity: 0,
+													scale: 1.2,
+													x: '100%',
+												}}
+												transition={{
+													x: {
+														duration: 0.5,
+														delay: 0.04 * i,
+													},
+													opacity: {
+														duration: 0.2,
+														delay: 0.04 * i,
+													},
+													rotate: {
+														type: 'spring',
+														damping: 8,
+													},
+													scale: {
+														duration: 0.2,
+														delay: 0.02 * i,
+													},
+												}}
+											>
+												<DeleteIcon />
+											</motion.div>
+										)}
+									</AnimatePresence>
+									<img
+										src={
+											process.env.PUBLIC_URL +
+											`/emojis/${
+												emojiMoodArr[d.moodNum]
+											}.svg`
+										}
+										alt={emojiMoodArr[d.moodNum]}
+									/>
+								</div>
+							</motion.div>
+						</AnimatePresence>
 					))
 				) : (
 					<p>No moods to show</p>
 				)}
-				<Button
-					className={classes.cardButton}
-					onClick={() => openDayForm()}
-				>
-					Add a mood
-				</Button>
+				<div className={classes.buttonContainer}>
+					{hasMoods ? (
+						<Button
+							style={{
+								background: chroma
+									.scale([
+										colors.danger,
+										colors.card.itemPrimary,
+									])
+									.colors(10)[canDelete ? 3 : 6],
+							}}
+							className={`${classes.cardButton} ${classes.deleteButton}`}
+							onClick={() => setCanDelete(!canDelete)}
+						>
+							Delete
+						</Button>
+					) : (
+						<div />
+					)}
+					<Button
+						className={classes.cardButton}
+						onClick={() => openDayForm()}
+					>
+						Add a mood
+					</Button>
+				</div>
 			</div>
 			<div>
 				{hasMoods ? (
