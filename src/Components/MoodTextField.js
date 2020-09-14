@@ -10,7 +10,7 @@ const MoodTextField = withStyles({
 		marginTop: '2%',
 		'& *': {
 			textAlign: 'left',
-			fontSize: '5vw',
+			fontSize: '1.5rem',
 		},
 		'&input:-internal-autofill-selected,input:-webkit-autofill,input:-webkit-autofill:hover, input:-webkit-autofill:focus,textarea:-webkit-autofill,textarea:-webkit-autofill:hover,textarea:-webkit-autofill:focus': {
 			border: 'none',
@@ -41,10 +41,10 @@ const MoodTextField = withStyles({
 		},
 		'@media (max-width: 800px)': {
 			'& .MuiInputBase-input': {
-				fontSize: '5vw',
+				fontSize: '1.5rem',
 			},
 			'& label': {
-				fontSize: '5vw',
+				fontSize: '1.5rem',
 			},
 		},
 	},

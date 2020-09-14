@@ -1,5 +1,6 @@
 import React from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { Container } from '@material-ui/core';
 
 const Modal = ({ isToggled, children, close }) => {
 	return (
@@ -24,7 +25,7 @@ const Modal = ({ isToggled, children, close }) => {
 							animate={{ opacity: 1 }}
 							exit={{ opacity: 0 }}
 							style={{
-								zIndex: 1000,
+								zIndex: 100,
 								position: 'fixed',
 								top: 0,
 								left: 0,
@@ -34,24 +35,26 @@ const Modal = ({ isToggled, children, close }) => {
 							}}
 							onClick={close}
 						/>
-						<motion.div
-							initial={{ y: '100vh' }}
-							animate={{ y: 0 }}
-							exit={{ y: '-100vh' }}
-							transition={{
-								duration: 1,
-								type: 'spring',
-								damping: 15,
-							}}
-							style={{
-								width: '90%',
-								height: 'fit-content',
-								margin: '0 auto',
-								zIndex: 1100,
-							}}
-						>
-							{children}
-						</motion.div>
+						<Container maxWidth='sm' style={{ zIndex: 100 }}>
+							<motion.div
+								initial={{ y: '100vh' }}
+								animate={{ y: 0 }}
+								exit={{ y: '-100vh' }}
+								transition={{
+									duration: 1,
+									type: 'spring',
+									damping: 15,
+								}}
+								style={{
+									width: '90%',
+									height: 'fit-content',
+									margin: '0 auto',
+									zIndex: 1100,
+								}}
+							>
+								{children}
+							</motion.div>
+						</Container>
 					</div>
 				</>
 			)}

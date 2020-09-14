@@ -15,16 +15,18 @@ code {
 		monospace;
 }
 
-p {
-	font-size: 2vw;
-	font-weight: 300;
-}
+@media (max-width: 960px) {
+	p {
+		font-size: 2vw;
+		font-weight: 300;
+	}
 
-h1 {
-	font-size: 5vw;
-}
+	h1 {
+		font-size: 5vw;
+	}
 
-h4 {
-	font-size: 4vw;
-	font-weight: 400;
+	h4 {
+		font-size: 4vw;
+		font-weight: 400;
+	}
 }

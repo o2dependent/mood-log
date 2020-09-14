@@ -14,6 +14,13 @@ const useStyles = makeStyles({
 		margin: 0,
 		padding: '4vh 2.5%',
 	},
+	showDayContainer: {
+		'@media (min-width: 960px)': {
+			display: 'grid',
+			gridTemplateColumns: '1fr 1fr',
+			gridColumnGap: '10px',
+		},
+	},
 	dayItemContainer: {
 		position: 'relative',
 		background: colors.card.bgCard,
@@ -24,10 +31,20 @@ const useStyles = makeStyles({
 		display: 'grid',
 		gridTemplateColumns: '1fr',
 		'& h4': {
+			fontWeight: 300,
 			paddingBottom: '10px',
 		},
 		'& p': {
-			fontSize: '3.5vw',
+			fontSize: '3.4vw',
+		},
+		'@media (min-width: 960px)': {
+			'& p': {
+				fontSize: '1.1em',
+			},
+			'& h4': {
+				fontSize: '1.25em',
+				paddingBottom: '10px',
+			},
 		},
 	},
 	dayItem: {
@@ -92,7 +109,7 @@ const useStyles = makeStyles({
 		transition: 'all 200ms',
 		color: colors.white,
 		background: colors.card.itemPrimary,
-		fontSize: '2vw',
+		fontSize: '4vw',
 		fontWeight: '400',
 		outline: 'none',
 		border: 'none',
@@ -101,14 +118,14 @@ const useStyles = makeStyles({
 		padding: '0',
 		borderRadius: '5px',
 		textTransform: 'none',
-		'@media (max-width: 800px)': {
-			fontSize: '5vw',
-		},
 		'&:first-of-type': {
 			marginRight: 'auto',
 			marginLeft: '0',
 		},
 		'&$deleteButton': {},
+		'@media (min-width: 960px)': {
+			fontSize: '1.25em',
+		},
 	},
 	deleteButton: {},
 	dayAvg: {
@@ -122,17 +139,28 @@ const useStyles = makeStyles({
 		boxShadow:
 			'0px 0px 2px rgba(0, 0, 0, 0.25), 0px 0px 7px rgba(0, 0, 0, 0.5)',
 		'& h4': {
+			fontWeight: 300,
 			gridColumn: '1/3',
-			paddingBottom: '2%',
+			paddingBottom: '10px',
 		},
 		'& p': {
 			boxSizing: 'border-box',
 			height: '100%',
 			width: '100%',
 			background: colors.card.itemPrimary,
-			fontSize: '2vh',
+			fontSize: '3.4vw',
 			textAlign: 'left',
 			padding: '10% 5%',
+		},
+		'@media (min-width: 960px)': {
+			margin: 0,
+			'& p': {
+				fontSize: '1.1em',
+			},
+			'& h4': {
+				fontSize: '1.25em',
+				paddingBottom: '10px',
+			},
 		},
 	},
 	dayAvgEmoji: {

@@ -16,34 +16,37 @@ const useStyles = makeStyles({
 		left: 0,
 		boxShadow:
 			'0px 0px 2px rgba(0, 0, 0, 0.25), 0px 0px 7px rgba(0, 0, 0, 0.5)',
-
 		width: '100%',
 		height: '100vh',
-		padding: '2vh 0',
+		padding: '1vw 0',
 		color: colors.white,
 		background: colors.bgAccent,
 		transition: 'min-height 500ms cubic-bezier(0.46, 0.03, 0.8, 0.96)',
 	},
 	titleContainer: {
 		display: 'flex',
-		alignSelf: 'flex-end',
+		alignSelf: 'center',
 		justifyContent: 'space-between',
 		alignItems: 'center',
-		height: 'fit-content',
+		height: '10vh',
 		width: '95%',
 		margin: '0 auto',
 		'& .MuiSvgIcon-root': {
-			fontSize: '4.5vh',
+			fontSize: '4vh',
 			color: colors.white,
 			cursor: 'pointer',
+			'@media (min-width: 960px)': {
+				fontSize: '2rem',
+			},
 		},
 	},
 	titleText: {
 		margin: '0',
-		fontSize: '3.25vh',
+		fontSize: '3.5vh',
 		boxSizing: 'border-box',
 		width: 'fit-content',
-		padding: '1% 5%',
+		maxWidth: '75%',
+		padding: '0.5vh 2vw',
 		borderRadius: '5px',
 		background: colors.light,
 		fontWeight: 400,
@@ -51,6 +54,9 @@ const useStyles = makeStyles({
 		'& span': {
 			overflow: 'hidden',
 			width: 'fit-content',
+		},
+		'@media (min-width: 960px)': {
+			fontSize: '2em',
 		},
 	},
 

@@ -4,7 +4,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ArrowBackIosOutlinedIcon from '@material-ui/icons/ArrowBackIosOutlined';
 import { Link, useLocation } from 'react-router-dom';
 import useStyles from '../Styles/TitleCardStyles';
-import { Button } from '@material-ui/core';
+import { Button, Container } from '@material-ui/core';
 import { motion } from 'framer-motion';
 
 export default function TitleCard(props) {
@@ -59,19 +59,21 @@ export default function TitleCard(props) {
 				damping: 16,
 			}}
 		>
-			{/* TODO optimize drawer code */}
-			<motion.div className={classes.navContainer}>
-				<Link to='/calendar' onClick={toggleDrawer(false)}>
-					<Button>Calendar</Button>
-				</Link>
-				<Link to='/calendar' onClick={toggleDrawer(false)}>
-					<Button>Analysis</Button>
-				</Link>
-				<div className={classes.navBottom}>
-					<Button>Profile</Button>
-					<Button>Settings</Button>
-				</div>
-			</motion.div>
+			<Container maxWidth='sm'>
+				{/* TODO optimize drawer code */}
+				<motion.div className={classes.navContainer}>
+					<Link to='/calendar' onClick={toggleDrawer(false)}>
+						<Button>Calendar</Button>
+					</Link>
+					<Link to='/calendar' onClick={toggleDrawer(false)}>
+						<Button>Analysis</Button>
+					</Link>
+					<div className={classes.navBottom}>
+						<Button>Profile</Button>
+						<Button>Settings</Button>
+					</div>
+				</motion.div>
+			</Container>
 			<div className={classes.titleContainer}>
 				{curLoc === '/calendar' ? (
 					<AddCircleOutlineIcon onClick={showMoodForm} />

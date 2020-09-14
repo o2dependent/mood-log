@@ -50,6 +50,9 @@ const modalStyle = {
 		border: 'none',
 		width: 'fit-content',
 		padding: '2% 10%',
+		'@media (min-width: 960px)': {
+			fontSize: '1rem',
+		},
 	},
 };
 
