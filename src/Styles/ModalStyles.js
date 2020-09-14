@@ -43,6 +43,7 @@ const modalStyle = {
 		background: colors.card.itemPrimary,
 		marginTop: '2.5%',
 		marginLeft: 'auto',
+		marginRight: '5%',
 		fontSize: '2vh',
 		fontWeight: '500',
 		outline: 'none',

@@ -53,8 +53,10 @@ export default function TitleCard(props) {
 			initial={{ y: '-90vh' }}
 			animate={{ y: drawerOpen ? '0' : '-90vh' }}
 			transition={{
-				type: 'tween',
-				duration: 0.75,
+				type: 'spring',
+				duration: 1,
+				stiffness: 70,
+				damping: 16,
 			}}
 		>
 			{/* TODO optimize drawer code */}

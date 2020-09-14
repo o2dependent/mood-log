@@ -54,6 +54,7 @@ function ShowDay(props) {
 			</Modal>
 			<div className={classes.dayItemContainer}>
 				<h4>Mood of the day</h4>
+				{/* TODO add anxiety toggler */}
 				{hasMoods ? (
 					dayArr.map((d, i) => (
 						<div

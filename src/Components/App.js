@@ -10,6 +10,7 @@ import style from '../Styles/AppStyles';
 import FilterModal from './FilterModal';
 import FilterButton from './FilterButton';
 import Modal from './Modal';
+import { AnimatePresence, motion } from 'framer-motion';
 
 // TODO add calendar scroll or swipe functionality | arrows on side for desktop?
 
@@ -25,6 +26,7 @@ class App extends Component {
 			startTime: -1,
 			endTime: 24,
 			days: [],
+			averageType: 'moods',
 		};
 		this.weekdayShort = moment.weekdaysShort();
 	}
@@ -127,6 +129,8 @@ class App extends Component {
 			endTime,
 			showMoodForm,
 			showFilterModal,
+			/* TODO add anxiety | mood average toggler */
+			averageType,
 		} = this.state;
 		const days = this.getDaysInMonth();
 		return (
@@ -164,13 +168,15 @@ class App extends Component {
 						</Route>
 						{/* CALENDAR */}
 						<Route exact path='/calendar'>
-							<CalendarContainer
-								startTime={startTime}
-								endTime={endTime}
-								curYear={curYear}
-								curMonth={curMonth}
-								days={days}
-							/>
+							<motion.div>
+								<CalendarContainer
+									startTime={startTime}
+									endTime={endTime}
+									curYear={curYear}
+									curMonth={curMonth}
+									days={days}
+								/>
+							</motion.div>
 						</Route>
 						{/* SHOW DAY */}
 						<Route path='/calendar/day/:date'>
