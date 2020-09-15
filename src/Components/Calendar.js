@@ -6,7 +6,7 @@ import useStyles from '../Styles/CalendarStyles';
 
 export default function Calendar(props) {
 	const { days, curMonth, curYear } = props;
-	const newMoment = moment(`${curYear}-${curMonth}-01`);
+	const newMoment = moment(`${curMonth} 01 ${curYear}`, 'MMMM DD YYYY');
 	const firstWeekDay = newMoment.format('d');
 	const daysInMonth = newMoment.endOf('month').format('D');
 
@@ -16,11 +16,12 @@ export default function Calendar(props) {
 		daysInMonth: daysInMonth,
 	};
 	const classes = useStyles(styleProps);
+	const weekDays = moment.weekdaysShort();
 
 	return (
 		<div className={classes.fullCalendar}>
 			{/* Calendar create */}
-			{moment.weekdaysShort().map((d) => (
+			{weekDays.map((d) => (
 				<MoodWeekDay key={d} day={d} />
 			))}
 			{Array(Number(firstWeekDay))

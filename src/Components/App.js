@@ -27,7 +27,6 @@ class App extends Component {
 			days: [],
 			averageType: 'moods',
 		};
-		this.weekdayShort = moment.weekdaysShort();
 	}
 
 	componentDidMount = () => {
@@ -93,8 +92,8 @@ class App extends Component {
 	// Return array of days in current month and any logged moods --- day = { day: DAY_NUM,event: [...MOOD_EVENTS] }
 	getDaysInMonth = () => {
 		const { moodsArr, curMonth, curYear, startTime, endTime } = this.state;
-		const dateObject = moment(`${curMonth} ${curYear}`);
-		const lastDay = moment(dateObject).endOf('month').format('D');
+		const dateObject = moment(`${curMonth} ${curYear}`, 'MMMM YYYY');
+		const lastDay = dateObject.endOf('month').format('D');
 
 		const daysArr = new Array(Number(lastDay))
 			.fill()
